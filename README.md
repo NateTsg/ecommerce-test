@@ -28,4 +28,14 @@ npx sequelize-cli db:migrate
 npx sequelize-cli db:seed:all
 ```
 
-## How to Run
+## Install Dependencies
+
+
+```bash
+npm install
+```
+
+## How to run in dev
+```bash
+npm run dev
+```
