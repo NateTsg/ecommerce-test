@@ -17,9 +17,8 @@ class CartItemService {
     /**
      * Create CartItem
      * 
-     * @param {string}      transaction_id 
-     * @param {string}      client_id 
-     * @param {string}      product_id 
+     * @param {number}      client_id 
+     * @param {number}      product_id 
      * @param {number}      order_quantity 
      * @param {string}      order_status 
      * @param {string}      created_by 
@@ -74,6 +73,75 @@ class CartItemService {
                 },
                 (cartDetail:CartItem, productDetail: Product, done: Function) => {
                     ProductService.update(productDetail.id, {stock : productDetail.stock - order_quantity}).then((result:Product)=> resolve(cartDetail))
+                    .catch((error:any)=>done(error))
+                }
+
+            ],(error) => {
+                if (error) {
+                    reject(error);
+                }
+            });
+        });
+    }
+
+    /**
+     * Remove CartItem
+     * 
+     * @param {number}      client_id 
+     * @param {number}      product_id 
+     * @param {number}      order_quantity 
+     * @param {string}      order_status 
+     * @param {string}      created_by 
+     */
+    static remove( client_id: number,  product_id: number, order_quantity: number): Promise<CartItem> {
+        return new Promise((resolve, reject) => {
+            async.waterfall([
+                (done: Function) => {
+                    ProductService.findById(product_id)
+                        .then((productDetail: Product) => {
+                            if (productDetail) {
+                                done(null, productDetail);
+                            }
+                            else {
+                                done(new BadRequestError([
+                                    { field: "product_id", message: Messages.PRODUCT_NOT_FOUND }
+                                ]));
+                            }
+                        })
+                        .catch((error:any) => done(error))
+                },
+                (productDetail: Product, done: Function) => {
+                    CartItemDAL.findOne({client_id:client_id, product_id:product_id}, null, [Client, Product]).then((cartItem:CartItem)=>{
+                        if(cartItem){
+                            done(null, cartItem, productDetail);
+                        }else{
+                            done(null, null, productDetail);
+                        }
+                    }).catch((error:any)=>done(error))
+
+                },
+                (cartItem:CartItem, productDetail: Product, done: Function) => {
+                    if(cartItem){
+                        if(cartItem.order_quantity >= order_quantity){
+                            let quantity: number= cartItem.order_quantity - order_quantity;
+                            let total: number = cartItem.order_total -  (
+                                order_quantity * productDetail.price 
+                            );
+                            CartItemDAL.update(cartItem,{order_quantity : quantity, order_total: total}).then((result:CartItem)=> done(null,result, productDetail))
+                            .catch((error:any)=>done(error))
+                        }else{
+                            done(new BadRequestError([
+                                { field: "stock", message: Messages.PRODUCT_STOCK_NOT_AVAILABLE }
+                            ]));
+                        }
+                        
+                    }else{
+                        done(new NotFoundError(Messages.CARTITEM_NOT_FOUND));
+                    }
+                    
+                },
+                (cartDetail:CartItem, productDetail: Product, done: Function) => {
+                    ProductService.update(productDetail.id, {stock : productDetail.stock + order_quantity}).then((result:Product)=> resolve(cartDetail))
                     .catch((error:any)=>done(error))
                 }
 

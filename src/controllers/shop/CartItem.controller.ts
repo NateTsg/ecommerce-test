@@ -44,6 +44,37 @@ class CartItemController {
                 next(error);
             });
     }
+   /**
+     * Create CartItem
+     * 
+     * @param {Request} request 
+     * @param {Response} response 
+     */
+    static async remove(request: any, response: Response, next: Function) {
+        /**
+         * Validate CartItem
+         */
+        const Schema = new evalidate.schema({
+            quantity: evalidate.number().required(Messages.CARTITEM_QUANTITY_REQUIRED),
+            product_id: evalidate.number().required(Messages.CARTITEM_PRODUCT_REQUIRED), 
+        });
+        let result = Schema.validate(request.body);
+        if (!result.isValid) {
+            let error = new BadRequestError(result.errors);
+            next(error);
+            return;
+        }
+        let user_code: string = (<User> request.user).user_code;
+        let client_id:number = (<Client>request.client).id;
+   
+        CartItemService.remove(client_id, request.body.product_id, request.body.quantity)
+            .then((result: CartItem) => {
+                response.status(200).json(result);
+            })
+            .catch((error: Error) => {
+                next(error);
+            });
+    }
  
     /**
      * Search CartItems

@@ -16,6 +16,13 @@ router
         fetchClient(),
         CartItemController.create)
     /**
+     * Create CartItem
+     */
+    .post("/remove", 
+    passport.authenticate('jwt', {session: false}), 
+    fetchClient(),
+    CartItemController.remove)
+    /**
      * Get CartItem for user
      */
     .get("/", 
