@@ -1,0 +1,17 @@
+# Environment Variables
+.env
+
+# Builds
+dist/
+coverage/
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Uploads Local files
+static/
+uploads/
+
+# Secret Files
+secrets/

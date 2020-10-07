@@ -1,0 +1,22 @@
+# Use Node.js 12.18.3 LTS
+FROM node:12.18.3
+
+# Environment Variables
+ENV PORT 8000
+ENV NODE_ENV=development
+
+# Copy Source Code
+COPY . /app
+
+# Change Working Directory
+WORKDIR /app
+
+# Install Node Dependencies
+RUN npm install
+RUN npm run build
+
+# Expose PORT
+EXPOSE ${PORT}
+
+# Launch Application
+CMD ["npm", "start"]

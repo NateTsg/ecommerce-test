@@ -1,0 +1,18 @@
+version: "1"
+services: 
+    api:
+        build:
+            context: "."
+            dockerfile: "./Dockerfile.dev"
+        ports:
+            - "8000:8000"
+        networks: 
+            - ecommerce_network
+        volumes:
+            - ecommerce_uploads_volume:/app/uploads
+        restart: always  
+networks: 
+    ecommerce_network:
+        driver: bridge
+volumes:
+    ecommerce_uploads_volume: {}

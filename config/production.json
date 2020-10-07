@@ -1,0 +1,15 @@
+{
+    "name": "Ecommerce API",
+    "app": {
+        "version": "v1",
+        "port": 8000
+    },
+    "database": {
+        "logging": false,
+        "port": "3306",
+        "host": "localhost",
+        "user": "root",
+        "password": "root",
+        "name": "ecommerce"
+    }
+}

@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "sql2369374",
+    "password": "yA2%xG9%",
+    "database": "sql2369374",
+    "host": "sql2.freesqldatabase.com",
+    "dialect": "mysql",
+    "seederStorage": "json"
+  },
+  "test": {
+    "username": "root",
+    "password": "root",
+    "database": "ecommerce_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "seederStorage": "json"
+  },
+  "production": {
+    "username": "root",
+    "password": "root",
+    "database": "ecommerce",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "seederStorage": "json"
+  }
+}

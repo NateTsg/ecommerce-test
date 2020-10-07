@@ -1,0 +1,35 @@
+{
+    "name": "Ecommerce API",
+    "app": {
+        "version": "v1",
+        "port": 8000,
+        "system": {
+            "default": {
+                "locale": "EN"
+            }
+        }
+    },
+    "logger": {
+        "winston": {
+            "silent": false
+        }
+    },
+    "security": {
+        "jwt": {
+            "secret": "THIS_IS_THE_SECERT_KEY",
+            "expires": "30d"
+        },
+        "hash": {
+            "saltRound": 10
+        }
+    },
+    "communication": {
+        "nodemailer": {
+            "host": "smtp.ethereal.email",
+            "port": 587,
+            "secure": false,
+            "user": "test",
+            "password": "test"
+        }
+    }
+}

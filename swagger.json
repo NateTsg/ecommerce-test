@@ -1,0 +1,23 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is the API documentation for Ecommerce Platform",
+        "version": "1.0.0",
+        "title": "Ecommerce Platform",
+        "contact": {
+            "email": "nathantsegaye839@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "host": "https://www.ecommerce.com",
+    "basePath": "/api",
+    "tags": [
+    ],
+    "schemes": [
+      "https",
+      "http"
+    ]
+  }
