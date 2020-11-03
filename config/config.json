@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "sql2369374",
-    "password": "yA2%xG9%",
-    "database": "sql2369374",
-    "host": "sql2.freesqldatabase.com",
+    "username": "sql7374212",
+    "password": "8KDKsG7jzN",
+    "database": "sql7374212",
+    "host": "sql7.freesqldatabase.com",
     "dialect": "mysql",
     "seederStorage": "json"
   },

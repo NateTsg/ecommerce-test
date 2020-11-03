@@ -1,15 +1,15 @@
 {
-    "name": "Ecommerce API (Development)",
-    "app": {
-        "version": "v1",
-        "port": 5000
-    },
-    "database": {
-        "logging": false,
-        "port": "3306",
-        "host": "sql2.freesqldatabase.com",
-        "user": "sql2369374",
-        "password": "yA2%xG9%",
-        "name": "sql2369374"
-    }
+  "name": "Ecommerce API (Development)",
+  "app": {
+    "version": "v1",
+    "port": 5000
+  },
+  "database": {
+    "logging": false,
+    "port": "3306",
+    "host": "sql7.freesqldatabase.com",
+    "user": "sql7374212",
+    "password": "8KDKsG7jzN",
+    "name": "sql7374212"
+  }
 }
